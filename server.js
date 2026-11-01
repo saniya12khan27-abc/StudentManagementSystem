@@ -374,24 +374,11 @@ async function startServer() {
       console.log(`Server is running on port ${PORT}`);
     });
 
-  } catch (error) {
+   } catch (error) {
     console.error("MongoDB / Server startup error:");
-
-    if (error.message.includes("authentication failed")) {
-      console.error("Check your MongoDB username and password.");
-    } else if (
-      error.message.includes("ENOTFOUND") ||
-      error.message.includes("querySrv")
-    ) {
-      console.error("Check your MongoDB cluster hostname and URI.");
-    } else if (
-      error.message.includes("IP") ||
-      error.message.includes("ECONNREFUSED")
-    ) {
-      console.error("Check MongoDB Atlas Network Access and IP settings.");
-    } else {
-      console.error(error.message);
-    }
+    console.error("Error name:", error.name);
+    console.error("Error message:", error.message);
+    console.error("Error code:", error.code || "Not available");
 
     process.exit(1);
   }

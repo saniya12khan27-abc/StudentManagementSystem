@@ -34,6 +34,7 @@ app.use(cors({
 app.use(express.json({ limit: "20kb" }));
 
 // Store login sessions in MongoDB.
+app.set("trust proxy", 1);
 app.use(session({
   name: "student_admin_session",
   secret: process.env.SESSION_SECRET,
